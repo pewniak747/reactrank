@@ -1,6 +1,7 @@
 const fs = require('fs-extra');
 const _ = require('lodash');
 const sortBy = _.sortBy;
+const sumBy = _.sumBy;
 
 /* user
  * id: {
@@ -76,11 +77,13 @@ userNames.forEach((userName) => {
       public_gists: total_public_gists,
     } = rawUser;
     const contributions = sortBy(userContributions[id] || [], u => -u.contributions);
+    const total_contributions = sumBy(contributions, u => u.contributions);
     users[id] = {
       id,
       login,
       name,
       avatar_url,
+      total_contributions,
       total_followers,
       total_public_repos,
       total_public_gists,
