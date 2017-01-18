@@ -89,3 +89,15 @@ userNames.forEach((userName) => {
   }
 });
 fs.outputJson('data/processed/users.json', users);
+
+const rankings = {};
+
+function rankingBy(attribute) {
+  return rankings[attribute] = sortBy(users, u => -u[attribute]).map(u => u.id);
+};
+
+rankings['total_followers'] = rankingBy('total_followers');
+rankings['total_public_repos'] = rankingBy('total_public_repos');
+rankings['total_public_gists'] = rankingBy('total_public_gists');
+rankings['total_contributions'] = rankingBy('total_contributions');
+fs.outputJson('data/processed/rankings.json', rankings);
