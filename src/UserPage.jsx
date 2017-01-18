@@ -7,7 +7,7 @@ import {
 } from './store';
 import routes from './routes';
 
-const UserContribution = ({ id, contributions }) => {
+const RepoContribution = ({ id, contributions }) => {
   const repo = getRepoById(id);
 
   return (
@@ -52,7 +52,7 @@ export default ({ params: { id } }) => {
       </dl>
       Contributions:
       {user.contributions.map(({ id, contributions }) =>
-        <UserContribution key={id} id={id} contributions={contributions} />
+        <RepoContribution key={id} id={id} contributions={contributions} />
       )}
     </div>
   );
