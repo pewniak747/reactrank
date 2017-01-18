@@ -11,6 +11,8 @@ import {
 } from './store';
 import routes from './routes';
 
+import styles from './RankingPage.css';
+
 export const RankingUser = ({ id }) => {
   const user = getUserById(id);
 
@@ -66,7 +68,7 @@ class RankingPage extends Component {
     const orderings = [CONTRIBUTIONS, FOLLOWERS, PUBLIC_REPOS, PUBLIC_GISTS];
 
     return (
-      <div>
+      <div className={styles.root}>
         {orderings.map(ordering =>
           <button
             type="button"
