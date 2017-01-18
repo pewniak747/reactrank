@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 import {
   CONTRIBUTIONS,
   FOLLOWERS,
+  PUBLIC_REPOS,
+  PUBLIC_GISTS,
   getUserIdsRankedBy,
   getUserById,
 } from './store';
 
 const RankingUser = ({ id }) => {
   const user = getUserById(id);
-  console.log('Rerendering user', user);
+
   return (
     <dl>
       <dt>ID</dt>
@@ -19,7 +21,7 @@ const RankingUser = ({ id }) => {
       <dt>Name</dt>
       <dd>{user.name}</dd>
       <dt>Avatar</dt>
-      <dd><img src={user.avatarUrl} width="50"/></dd>
+      <dd><img src={user.avatarUrl} width="50" alt={user.login}/></dd>
       <dt>Contributions</dt>
       <dd>{user.totalContributions}</dd>
       <dt>Followers</dt>
@@ -33,12 +35,33 @@ const RankingUser = ({ id }) => {
 }
 
 class RankingPage extends Component {
+  state = {
+    currentOrdering: CONTRIBUTIONS,
+  }
+
+  changeOrdering = (currentOrdering) => {
+    this.setState({ currentOrdering });
+  }
+
   render() {
-    const userIds = getUserIdsRankedBy(CONTRIBUTIONS);
-    const filters = [CONTRIBUTIONS, FOLLOWERS];
+    const { currentOrdering } = this.state;
+
+    const userIds = getUserIdsRankedBy(currentOrdering);
+    const orderings = [CONTRIBUTIONS, FOLLOWERS, PUBLIC_REPOS, PUBLIC_GISTS];
 
     return (
       <div>
+        {orderings.map(ordering =>
+          <button
+            type="button"
+            key={ordering}
+            id={`ordering-${ordering}`}
+            onClick={() => this.changeOrdering(ordering)}
+            data-active={ordering === currentOrdering}
+          >
+            {ordering}
+          </button>
+        )}
         <ul>
           {userIds.map((id) => <RankingUser key={id} id={id} />)}
         </ul>
