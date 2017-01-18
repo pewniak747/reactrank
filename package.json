@@ -1,0 +1,19 @@
+{
+  "name": "angularank",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fetch-data": "node fetch-data.js",
+    "process-data": "node process-data.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tomasz Pewiński",
+  "license": "ISC",
+  "devDependencies": {
+    "bluebird": "^3.4.7",
+    "fs-extra": "^2.0.0",
+    "github": "^8.1.0",
+    "lodash": "^4.17.4"
+  }
+}
