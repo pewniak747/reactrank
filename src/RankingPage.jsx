@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 import {
   CONTRIBUTIONS,
@@ -8,6 +9,7 @@ import {
   getUserIdsRankedBy,
   getUserById,
 } from './store';
+import routes from './routes';
 
 const RankingUser = ({ id }) => {
   const user = getUserById(id);
@@ -17,11 +19,17 @@ const RankingUser = ({ id }) => {
       <dt>ID</dt>
       <dd>{user.id}</dd>
       <dt>Login</dt>
-      <dd>{user.login}</dd>
+      <dd>
+        <Link to={routes.user(id)}>
+          {user.login}
+        </Link>
+      </dd>
       <dt>Name</dt>
       <dd>{user.name}</dd>
       <dt>Avatar</dt>
-      <dd><img src={user.avatarUrl} width="50" alt={user.login}/></dd>
+      <dd>
+        <img src={user.avatarUrl} width="50" alt={user.login}/>
+      </dd>
       <dt>Contributions</dt>
       <dd>{user.totalContributions}</dd>
       <dt>Followers</dt>

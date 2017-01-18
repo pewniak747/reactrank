@@ -1,5 +1,6 @@
 import rankings from '../data/processed/rankings.json';
 import users from '../data/processed/users.json';
+import repos from '../data/processed/repos.json';
 import { mapKeys, camelCase } from 'lodash';
 
 export const CONTRIBUTIONS = 'total_contributions';
@@ -17,4 +18,8 @@ export function getUserIdsRankedBy(attribute) {
 
 export function getUserById(id) {
   return mapKeysToCamelCase(users[String(id)]);
+};
+
+export function getRepoById(id) {
+  return mapKeysToCamelCase(repos[String(id)]);
 };
