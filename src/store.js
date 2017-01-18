@@ -12,8 +12,8 @@ function mapKeysToCamelCase(obj) {
   return mapKeys(obj, (v, k) => camelCase(k));
 };
 
-export function getUserIdsRankedBy(attribute) {
-  return rankings[attribute].slice(0, 10);
+export function getUserIdsRankedBy(attribute, count) {
+  return rankings[attribute].slice(0, count);
 };
 
 export function getUserById(id) {

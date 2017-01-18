@@ -11,7 +11,7 @@ import {
 } from './store';
 import routes from './routes';
 
-const RankingUser = ({ id }) => {
+export const RankingUser = ({ id }) => {
   const user = getUserById(id);
 
   return (
@@ -42,19 +42,27 @@ const RankingUser = ({ id }) => {
   );
 }
 
+const RANKING_COUNT_STEP = 10;
+
 class RankingPage extends Component {
   state = {
     currentOrdering: CONTRIBUTIONS,
+    rankingCount: RANKING_COUNT_STEP,
   }
 
   changeOrdering = (currentOrdering) => {
-    this.setState({ currentOrdering });
+    this.setState({ currentOrdering, rankingCount: RANKING_COUNT_STEP });
+  }
+
+  loadMore = () => {
+    const { rankingCount } = this.state;
+    this.setState({ rankingCount: rankingCount + RANKING_COUNT_STEP });
   }
 
   render() {
-    const { currentOrdering } = this.state;
+    const { currentOrdering, rankingCount } = this.state;
 
-    const userIds = getUserIdsRankedBy(currentOrdering);
+    const userIds = getUserIdsRankedBy(currentOrdering, rankingCount);
     const orderings = [CONTRIBUTIONS, FOLLOWERS, PUBLIC_REPOS, PUBLIC_GISTS];
 
     return (
@@ -73,6 +81,13 @@ class RankingPage extends Component {
         <ul>
           {userIds.map((id) => <RankingUser key={id} id={id} />)}
         </ul>
+          <button
+            type="button"
+            id="load-more"
+            onClick={this.loadMore}
+          >
+            load more
+          </button>
       </div>
     );
   }

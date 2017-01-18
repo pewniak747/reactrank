@@ -7,7 +7,7 @@ import {
   CONTRIBUTIONS,
   FOLLOWERS,
 } from './store';
-import RankingPage from './RankingPage';
+import RankingPage, { RankingUser } from './RankingPage';
 
 it('renders without crashing', () => {
   mount(<RankingPage />);
@@ -34,4 +34,15 @@ it('activates other ordering buttons if clicked', () => {
   expect(activeButtons.length).toEqual(1);
   expect(result.state('currentOrdering')).toEqual(FOLLOWERS);
   expect(activeButton.prop('id')).toEqual(`ordering-${FOLLOWERS}`);
+});
+
+it('displays 10 users by default', () => {
+  const result = shallow(<RankingPage />);
+  expect(result.find(RankingUser).length).toEqual(10);
+});
+
+it('displays 10 more users after clicking load more button', () => {
+  const result = shallow(<RankingPage />);
+  result.find('#load-more').simulate('click');
+  expect(result.find(RankingUser).length).toEqual(20);
 });
