@@ -2,18 +2,28 @@
   "name": "angularank",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "main": "index.js",
   "scripts": {
     "fetch-data": "node fetch-data.js",
     "process-data": "node process-data.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   },
   "author": "Tomasz Pewiński",
   "license": "ISC",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.0"
+  },
   "devDependencies": {
     "bluebird": "^3.4.7",
     "fs-extra": "^2.0.0",
     "github": "^8.1.0",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "react-scripts": "0.8.5"
   }
 }
