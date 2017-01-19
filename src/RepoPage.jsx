@@ -39,6 +39,9 @@ export default ({ params: { id } }) => {
           &nbsp;
           {repo.fullName}
         </a>
+        <If condition={repo.description}>
+          <p>{repo.description}</p>
+        </If>
       </div>
       <div className={styles.users}>
         {repo.users.map(({ id, contributions }) =>

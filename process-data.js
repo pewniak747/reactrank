@@ -24,7 +24,7 @@ const sumBy = _.sumBy;
  *   id: 0,
  *   name: "",
  *   full_name: "",
- *   stars: 0,
+ *   description: "",
  *   users: [{
  *    id: 0,
  *    contributions: 0
@@ -37,7 +37,7 @@ const repos = {};
 const userNames = new Set();
 const userContributions = {};
 const parsedRepos = rawRepos.forEach((repo) => {
-  const { id, name, full_name, stargazers_count: stars } = repo;
+  const { id, name, full_name, description } = repo;
   const rawUsers = fs.readJsonSync(`data/raw/contributors/${repo.name}.json`);
   rawUsers.forEach(u => userNames.add(u.login));
   const users = rawUsers.map(u => ({
@@ -56,7 +56,7 @@ const parsedRepos = rawRepos.forEach((repo) => {
     id,
     name,
     full_name,
-    stars,
+    description,
     users,
   };
 });
