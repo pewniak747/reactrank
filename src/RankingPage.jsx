@@ -12,7 +12,6 @@ import {
 import routes from './routes';
 
 import Octicon from './Octicon';
-import logo from './angular.svg';
 import styles from './RankingPage.css';
 
 export const RankingUser = ({ id, rank }) => {
@@ -76,7 +75,6 @@ class RankingPage extends Component {
 
     return (
       <div className={styles.root}>
-        <img src={logo} alt="Angularank" className={styles.logo} />
         <div className={styles.orderings}>
           <For each="ordering" of={orderings}>
             <div

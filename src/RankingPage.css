@@ -23,12 +23,6 @@
   font-size: 12px;
 }
 
-.logo {
-  height: 100px;
-  margin: auto;
-  display: block;
-}
-
 .orderings {
   display: flex;
   flex-direction: column;
