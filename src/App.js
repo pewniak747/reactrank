@@ -6,10 +6,12 @@ import RankingPage from './RankingPage';
 import UserPage from './UserPage';
 import RepoPage from './RepoPage';
 
+import styles from './App.css';
+
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.root}>
         <Router history={browserHistory}>
           <Route path={routes.ranking} component={RankingPage} />
           <Route path={routes.user(':id')} component={UserPage} />

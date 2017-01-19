@@ -11,36 +11,27 @@ import {
 } from './store';
 import routes from './routes';
 
+import logo from './angular.svg';
 import styles from './RankingPage.css';
 
 export const RankingUser = ({ id }) => {
   const user = getUserById(id);
 
   return (
-    <dl>
-      <dt>ID</dt>
-      <dd>{user.id}</dd>
-      <dt>Login</dt>
-      <dd>
-        <Link to={routes.user(id)}>
-          {user.login}
-        </Link>
-      </dd>
-      <dt>Name</dt>
-      <dd>{user.name}</dd>
-      <dt>Avatar</dt>
-      <dd>
-        <img src={user.avatarUrl} width="50" alt={user.login}/>
-      </dd>
-      <dt>Contributions</dt>
-      <dd>{user.totalContributions}</dd>
-      <dt>Followers</dt>
-      <dd>{user.totalFollowers}</dd>
-      <dt>Public repos</dt>
-      <dd>{user.totalPublicRepos}</dd>
-      <dt>Public gists</dt>
-      <dd>{user.totalPublicGists}</dd>
-    </dl>
+    <div className={styles.user}>
+      <img src={user.avatarUrl} className={styles.userAvatar} alt={user.login} />
+      <Link to={routes.user(id)} className={styles.userLogin}>
+        {user.login}
+      </Link>
+      <div>C</div>
+      <div>{user.totalContributions}</div>
+      <div>F</div>
+      <div>{user.totalFollowers}</div>
+      <div>R</div>
+      <div>{user.totalPublicRepos}</div>
+      <div>G</div>
+      <div>{user.totalPublicGists}</div>
+    </div>
   );
 }
 
@@ -66,30 +57,38 @@ class RankingPage extends Component {
 
     const userIds = getUserIdsRankedBy(currentOrdering, rankingCount);
     const orderings = [CONTRIBUTIONS, FOLLOWERS, PUBLIC_REPOS, PUBLIC_GISTS];
+    const buttonLabels = {
+      [CONTRIBUTIONS]: 'Contributions',
+      [FOLLOWERS]: 'Followers',
+      [PUBLIC_REPOS]: 'Repositories',
+      [PUBLIC_GISTS]: 'Gists',
+    };
 
     return (
       <div className={styles.root}>
-        {orderings.map(ordering =>
-          <button
-            type="button"
-            key={ordering}
-            id={`ordering-${ordering}`}
-            onClick={() => this.changeOrdering(ordering)}
-            data-active={ordering === currentOrdering}
-          >
-            {ordering}
-          </button>
-        )}
-        <ul>
-          {userIds.map((id) => <RankingUser key={id} id={id} />)}
-        </ul>
-          <button
-            type="button"
-            id="load-more"
-            onClick={this.loadMore}
-          >
-            load more
-          </button>
+        <img src={logo} alt="Angularank" className={styles.logo} />
+        <div className={styles.orderings}>
+          {orderings.map(ordering =>
+            <button
+              type="button"
+              key={ordering}
+              id={`ordering-${ordering}`}
+              className={styles.ordering}
+              onClick={() => this.changeOrdering(ordering)}
+              data-active={ordering === currentOrdering}
+            >
+              {buttonLabels[ordering]}
+            </button>
+          )}
+        </div>
+        {userIds.map((id) => <RankingUser key={id} id={id} />)}
+        <button
+          type="button"
+          id="load-more"
+          onClick={this.loadMore}
+        >
+          load more
+        </button>
       </div>
     );
   }
