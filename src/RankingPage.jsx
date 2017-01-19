@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import octicons from 'octicons';
 
 import {
   CONTRIBUTIONS,
@@ -14,6 +15,10 @@ import routes from './routes';
 import logo from './angular.svg';
 import styles from './RankingPage.css';
 
+const Octicon = ({ name, ...rest }) => (
+  <svg dangerouslySetInnerHTML={{ __html: octicons[name].path }} {...rest} />
+);
+
 export const RankingUser = ({ id, rank }) => {
   const user = getUserById(id);
 
@@ -24,10 +29,22 @@ export const RankingUser = ({ id, rank }) => {
       <div className={styles.userLogin}>
         {user.login}
       </div>
-      <div className={styles.stat}>{user.totalContributions}</div>
-      <div className={styles.stat}>{user.totalFollowers}</div>
-      <div className={styles.stat}>{user.totalPublicRepos}</div>
-      <div className={styles.stat}>{user.totalPublicGists}</div>
+      <div className={styles.stat}>
+        {user.totalContributions}
+        <Octicon className={styles.statIcon} name="git-commit" />
+      </div>
+      <div className={styles.stat}>
+        {user.totalFollowers}
+        <Octicon className={styles.statIcon} name="person" />
+      </div>
+      <div className={styles.stat}>
+        {user.totalPublicRepos}
+        <Octicon className={styles.statIcon} name="repo" />
+      </div>
+      <div className={styles.stat}>
+        {user.totalPublicGists}
+        <Octicon className={styles.statIcon} name="gist" />
+      </div>
     </Link>
   );
 }
