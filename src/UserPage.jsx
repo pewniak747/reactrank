@@ -14,7 +14,7 @@ const RepoContribution = ({ id, contributions }) => {
 
   return (
     <Link to={routes.repo(id)} className={styles.repo}>
-      <div>
+      <div className={styles.repoName}>
         <Octicon className={styles.repoStatIcon} name="repo" />
         {repo.fullName}
       </div>
@@ -68,9 +68,13 @@ export default ({ params: { id } }) => {
         </div>
       </div>
       <div className={styles.repos}>
-        {user.contributions.map(({ id, contributions }) =>
-          <RepoContribution key={id} id={id} contributions={contributions} />
-        )}
+        <For each="repo" of={user.contributions}>
+          <RepoContribution
+            key={repo.id}
+            id={repo.id}
+            contributions={repo.contributions}
+          />
+        </For>
       </div>
     </div>
   );

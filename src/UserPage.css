@@ -88,6 +88,11 @@
   color: initial;
 }
 
+.repo-name {
+  display: flex;
+  align-items: center;
+}
+
 .repo-stat {
   display: flex;
   align-items: center;
