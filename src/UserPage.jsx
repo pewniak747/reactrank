@@ -28,8 +28,7 @@ const RepoContribution = ({ id, contributions }) => {
 
 export default ({ params: { id } }) => {
   const user = getUserById(id);
-  const site = `github.com/${user.login}`;
-  const url = `https://${site}`;
+  const url = `https://github.com/${user.login}`;
 
   return (
     <div className={styles.root}>
@@ -42,7 +41,11 @@ export default ({ params: { id } }) => {
             <h1>{user.name}</h1>
           </If>
           <h2>
-            <a href={url} target="_blank">{site}</a>
+            <a href={url} target="_blank" className={styles.link}>
+              <Octicon name="mark-github" />
+              &nbsp;
+              {user.login}
+            </a>
           </h2>
         </div>
         <div className={styles.stats}>
