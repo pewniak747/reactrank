@@ -1,9 +1,10 @@
-var autoprefixer = require('autoprefixer');
+var cssnext = require('postcss-cssnext');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
+var StyleLintPlugin = require('stylelint-webpack-plugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
 
@@ -139,7 +140,7 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
-        loader: 'style!css?importLoaders=1&modules!postcss'
+        loader: 'style!css?importLoaders=1&camelCase&modules!postcss'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -161,7 +162,7 @@ module.exports = {
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
-      autoprefixer({
+      cssnext({
         browsers: [
           '>1%',
           'last 4 versions',
@@ -172,6 +173,7 @@ module.exports = {
     ];
   },
   plugins: [
+    new StyleLintPlugin({ files: 'src/**/*.css' }),
     // Makes the public URL available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.

@@ -24,6 +24,7 @@ var paths = require('../config/paths');
 
 var useYarn = pathExists.sync(paths.yarnLockFile);
 var cli = useYarn ? 'yarn' : 'npm';
+//var isInteractive = process.stdout.isTTY;
 var isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
@@ -59,9 +60,6 @@ function setupCompiler(host, port, protocol) {
   // bundle, so if you refresh, it'll wait instead of serving the old one.
   // "invalid" is short for "bundle invalidated", it doesn't imply any errors.
   compiler.plugin('invalid', function() {
-    if (isInteractive) {
-      clearConsole();
-    }
     console.log('Compiling...');
   });
 
@@ -70,10 +68,6 @@ function setupCompiler(host, port, protocol) {
   // "done" event fires when Webpack has finished recompiling the bundle.
   // Whether or not you have warnings or errors, you will get this event.
   compiler.plugin('done', function(stats) {
-    if (isInteractive) {
-      clearConsole();
-    }
-
     // We have switched off the default Webpack output in WebpackDevServer
     // options so we are going to "massage" the warnings and errors and present
     // them in a readable focused way.
