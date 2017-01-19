@@ -83,8 +83,7 @@ class RankingPage extends Component {
         <img src={logo} alt="Angularank" className={styles.logo} />
         <div className={styles.orderings}>
           <For each="ordering" of={orderings}>
-            <button
-              type="button"
+            <div
               key={ordering}
               id={`ordering-${ordering}`}
               className={styles.ordering}
@@ -92,20 +91,19 @@ class RankingPage extends Component {
               data-active={ordering === currentOrdering}
             >
               {buttonLabels[ordering]}
-            </button>
+            </div>
           </For>
         </div>
         <For each="id" index="idx" of={userIds}>
           <RankingUser key={id} id={id} rank={idx+1} />
         </For>
-        <button
-          type="button"
+        <div
           id="load-more"
           onClick={this.loadMore}
           className={styles.loadMore}
         >
           load more
-        </button>
+        </div>
       </div>
     );
   }
