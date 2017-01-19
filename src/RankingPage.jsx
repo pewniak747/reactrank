@@ -14,24 +14,21 @@ import routes from './routes';
 import logo from './angular.svg';
 import styles from './RankingPage.css';
 
-export const RankingUser = ({ id }) => {
+export const RankingUser = ({ id, rank }) => {
   const user = getUserById(id);
 
   return (
-    <div className={styles.user}>
+    <Link to={routes.user(id)} className={styles.user}>
+      <div className={styles.rank}>{rank}</div>
       <img src={user.avatarUrl} className={styles.userAvatar} alt={user.login} />
-      <Link to={routes.user(id)} className={styles.userLogin}>
+      <div className={styles.userLogin}>
         {user.login}
-      </Link>
-      <div>C</div>
-      <div>{user.totalContributions}</div>
-      <div>F</div>
-      <div>{user.totalFollowers}</div>
-      <div>R</div>
-      <div>{user.totalPublicRepos}</div>
-      <div>G</div>
-      <div>{user.totalPublicGists}</div>
-    </div>
+      </div>
+      <div className={styles.stat}>{user.totalContributions}</div>
+      <div className={styles.stat}>{user.totalFollowers}</div>
+      <div className={styles.stat}>{user.totalPublicRepos}</div>
+      <div className={styles.stat}>{user.totalPublicGists}</div>
+    </Link>
   );
 }
 
@@ -81,13 +78,14 @@ class RankingPage extends Component {
             </button>
           </For>
         </div>
-        <For each="id" of={userIds}>
-          <RankingUser key={id} id={id} />
+        <For each="id" index="idx" of={userIds}>
+          <RankingUser key={id} id={id} rank={idx+1} />
         </For>
         <button
           type="button"
           id="load-more"
           onClick={this.loadMore}
+          className={styles.loadMore}
         >
           load more
         </button>

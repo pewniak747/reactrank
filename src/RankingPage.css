@@ -4,6 +4,21 @@
   --gray-color: #666;
 }
 
+@custom-media --desktop (min-width: 700px);
+
+.button {
+  height: 32px;
+  border: 0;
+  border-radius: 2px;
+  background-color: var(--light-gray-color);
+  color: var(--gray-color);
+  outline: none;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 2px 20px;
+}
+
 .logo {
   height: 100px;
   margin: auto;
@@ -14,31 +29,23 @@
   display: flex;
   flex-direction: column;
 
-  @media (min-width: 700px) {
+  @media (--desktop) {
     flex-direction: row;
     padding: 20px 0;
   }
 }
 
 .ordering {
+  composes: button;
   flex: 0 1 100%;
   margin: 5px 0;
-  height: 32px;
-  border: 0;
-  border-radius: 2px;
-  background-color: var(--light-gray-color);
-  color: var(--gray-color);
-  outline: none;
-  cursor: pointer;
-  font-weight: bold;
-  text-transform: uppercase;
 
   &[data-active='true'] {
     background-color: var(--brand-color);
     color: #fff;
   }
 
-  @media (min-width: 700px) {
+  @media (--desktop) {
     margin: 0 10px;
 
     &:first-child {
@@ -57,10 +64,17 @@
   height: 48px;
   padding: 5px 0;
   border-bottom: 1px solid var(--light-gray-color);
+  text-decoration: none;
+  color: initial;
 
   & > div {
     margin: 0 5px;
   }
+}
+
+.rank {
+  flex: 0 0 48px;
+  text-align: center;
 }
 
 .user-avatar {
@@ -71,4 +85,16 @@
 
 .user-login {
   flex-grow: 1;
+  font-size: 18px;
+}
+
+.stat {
+  flex: 0 1 70px;
+  text-align: right;
+}
+
+.load-more {
+  composes: button;
+  display: block;
+  margin: 20px auto;
 }
