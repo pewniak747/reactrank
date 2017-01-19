@@ -60,6 +60,7 @@
     "postcss-cssnext": "^2.9.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
+    "promise-ratelimit": "0.0.3",
     "react-addons-test-utils": "^15.4.2",
     "react-dev-utils": "^0.4.2",
     "recursive-readdir": "2.1.0",

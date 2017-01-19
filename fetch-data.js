@@ -1,5 +1,6 @@
 const GithubApi = require('github');
 const Promise = require('bluebird');
+const promiseRatelimit = require('promise-ratelimit');
 const fs = require('fs-extra');
 const sleep = require('sleep');
 const { flatten, uniq } = require('lodash');
@@ -59,12 +60,15 @@ github.repos.getForOrg({
   });
   Promise.all(contributorPromises).then((reposContributors) => {
     const userLogins = uniq(flatten(reposContributors).map(c => c.login));
+    const throttle = promiseRatelimit(10);
     userLogins.forEach((userLogin) => {
-      github.users.getForUser({
-        username: userLogin,
-      }).then((res) => {
-        fs.outputJson(`data/raw/users/${userLogin}.json`, res);
-        console.log(userLogin);
+      throttle().then(() => {
+        github.users.getForUser({
+          username: userLogin,
+        }).then((res) => {
+          fs.outputJson(`data/raw/users/${userLogin}.json`, res);
+          console.log(userLogin);
+        });
       });
     });
   });
