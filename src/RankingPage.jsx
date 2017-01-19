@@ -68,7 +68,7 @@ class RankingPage extends Component {
       <div className={styles.root}>
         <img src={logo} alt="Angularank" className={styles.logo} />
         <div className={styles.orderings}>
-          {orderings.map(ordering =>
+          <For each="ordering" of={orderings}>
             <button
               type="button"
               key={ordering}
@@ -79,9 +79,11 @@ class RankingPage extends Component {
             >
               {buttonLabels[ordering]}
             </button>
-          )}
+          </For>
         </div>
-        {userIds.map((id) => <RankingUser key={id} id={id} />)}
+        <For each="id" of={userIds}>
+          <RankingUser key={id} id={id} />
+        </For>
         <button
           type="button"
           id="load-more"
