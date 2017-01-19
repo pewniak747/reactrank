@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import octicons from 'octicons';
 
 import {
   CONTRIBUTIONS,
@@ -12,12 +11,9 @@ import {
 } from './store';
 import routes from './routes';
 
+import Octicon from './Octicon';
 import logo from './angular.svg';
 import styles from './RankingPage.css';
-
-const Octicon = ({ name, ...rest }) => (
-  <svg dangerouslySetInnerHTML={{ __html: octicons[name].path }} {...rest} />
-);
 
 export const RankingUser = ({ id, rank }) => {
   const user = getUserById(id);
