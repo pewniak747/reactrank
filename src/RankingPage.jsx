@@ -44,12 +44,23 @@ export const RankingUser = ({ id, rank }) => {
   );
 }
 
+const rankingPageState = {};
+
 const RANKING_COUNT_STEP = 10;
 
 class RankingPage extends Component {
   state = {
     currentOrdering: CONTRIBUTIONS,
     rankingCount: RANKING_COUNT_STEP,
+  }
+
+  componentWillMount() {
+    const state = Object.assign({}, this.state, rankingPageState);
+    this.setState(state);
+  }
+
+  componentWillUnmount() {
+    Object.assign(rankingPageState, this.state);
   }
 
   changeOrdering = (currentOrdering) => {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, Route, Link, browserHistory, applyRouterMiddleware } from 'react-router';
+import { useScroll } from 'react-router-scroll';
 
 import routes from './routes';
 import RankingPage from './RankingPage';
@@ -27,7 +28,7 @@ class Layout extends Component {
 class App extends Component {
   render() {
     return (
-      <Router history={browserHistory}>
+      <Router history={browserHistory} render={applyRouterMiddleware(useScroll())}>
         <Route path="" component={Layout}>
           <Route path={routes.ranking} component={RankingPage} />
           <Route path={routes.user(':id')} component={UserPage} />
