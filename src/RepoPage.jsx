@@ -35,8 +35,6 @@ export default ({ params: { id } }) => {
     <div className={styles.root}>
       <div className={styles.header}>
         <a href={url} target="_blank" className={styles.link}>
-          <Octicon name="mark-github" />
-          &nbsp;
           {repo.fullName}
         </a>
         <If condition={repo.description}>

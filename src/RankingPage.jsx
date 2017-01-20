@@ -24,21 +24,23 @@ export const RankingUser = ({ id, rank }) => {
       <div className={styles.userLogin}>
         {user.login}
       </div>
-      <div className={styles.stat}>
-        {user.totalContributions}
-        <Octicon className={styles.statIcon} name="git-commit" />
-      </div>
-      <div className={styles.stat}>
-        {user.totalFollowers}
-        <Octicon className={styles.statIcon} name="person" />
-      </div>
-      <div className={styles.stat}>
-        {user.totalPublicRepos}
-        <Octicon className={styles.statIcon} name="repo" />
-      </div>
-      <div className={styles.stat}>
-        {user.totalPublicGists}
-        <Octicon className={styles.statIcon} name="gist" />
+      <div className={styles.stats}>
+        <div className={styles.stat}>
+          {user.totalContributions}
+          <Octicon className={styles.statIcon} name="git-commit" />
+        </div>
+        <div className={styles.stat}>
+          {user.totalFollowers}
+          <Octicon className={styles.statIcon} name="person" />
+        </div>
+        <div className={styles.stat}>
+          {user.totalPublicRepos}
+          <Octicon className={styles.statIcon} name="repo" />
+        </div>
+        <div className={styles.stat}>
+          {user.totalPublicGists}
+          <Octicon className={styles.statIcon} name="gist" />
+        </div>
       </div>
     </Link>
   );
