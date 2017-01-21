@@ -56,6 +56,7 @@ class RankingPage extends Component {
     rankingCount: RANKING_COUNT_STEP,
   }
 
+  // Save and load infinite pagination state when navigating
   componentWillMount() {
     const state = Object.assign({}, this.state, rankingPageState);
     this.setState(state);
