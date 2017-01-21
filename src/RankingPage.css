@@ -1,8 +1,4 @@
-:root {
-  --brand-color: #dd0031;
-  --light-gray-color: #eee;
-  --gray-color: #666;
-}
+@import './colors.css';
 
 @custom-media --desktop (min-width: 700px);
 

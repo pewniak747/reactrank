@@ -59,6 +59,7 @@
     "object-assign": "4.1.0",
     "path-exists": "2.1.0",
     "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.1.0",
     "postcss-loader": "1.0.0",
     "promise": "7.1.1",
     "promise-ratelimit": "0.0.3",
