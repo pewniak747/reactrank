@@ -8,11 +8,11 @@ import {
   PUBLIC_GISTS,
   getUserIdsRankedBy,
   getUserById,
-} from './store';
-import routes from './routes';
+} from 'store';
+import routes from 'routes';
 
-import Octicon from './Octicon';
-import styles from './RankingPage.css';
+import Octicon from 'components/Octicon';
+import styles from './style.css';
 
 export const RankingUser = ({ id, rank }) => {
   const user = getUserById(id);

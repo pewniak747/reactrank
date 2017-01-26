@@ -4,11 +4,11 @@ import { Link } from 'react-router';
 import {
   getRepoById,
   getUserById,
-} from './store';
-import routes from './routes';
+} from 'store';
+import routes from 'routes';
 
-import Octicon from './Octicon';
-import styles from './RepoPage.css';
+import Octicon from 'components/Octicon';
+import styles from './style.css';
 
 const UserContribution = ({ id, contributions }) => {
   const user = getUserById(id);

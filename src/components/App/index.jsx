@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { Router, Route, Link, browserHistory, applyRouterMiddleware } from 'react-router';
 import { useScroll } from 'react-router-scroll';
 
-import routes from './routes';
-import RankingPage from './RankingPage';
-import UserPage from './UserPage';
-import RepoPage from './RepoPage';
+import routes from 'routes';
+
+import RankingPage from 'components/RankingPage';
+import UserPage from 'components/UserPage';
+import RepoPage from 'components/RepoPage';
 
 import logo from './react.svg';
-import styles from './App.css';
+import styles from './style.css';
 
 class Layout extends Component {
   render() {
