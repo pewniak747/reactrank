@@ -7,7 +7,7 @@ import RankingPage from './RankingPage';
 import UserPage from './UserPage';
 import RepoPage from './RepoPage';
 
-import logo from './angular.svg';
+import logo from './react.svg';
 import styles from './App.css';
 
 class Layout extends Component {

@@ -36,7 +36,7 @@ function getRemainingPages(res) {
 }
 
 github.repos.getForOrg({
-  org: "angular",
+  org: "reactjs",
   page: 1,
   per_page: 100,
 })
