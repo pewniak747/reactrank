@@ -6,8 +6,8 @@ import { mount, shallow } from 'enzyme';
 import {
   CONTRIBUTIONS,
   FOLLOWERS,
-} from './store';
-import RankingPage, { RankingUser } from './RankingPage';
+} from 'store';
+import RankingPage, { RankingUser } from 'components/RankingPage';
 
 it('renders without crashing', () => {
   mount(<RankingPage />);
